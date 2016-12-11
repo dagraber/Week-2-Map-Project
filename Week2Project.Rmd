@@ -1,0 +1,31 @@
+---
+title: "Week 2 Map Project"
+author: "David Graber"
+date: "December 10, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="Coffee Shops near JHU"}
+library(leaflet)
+spots <- data.frame(lat = numeric(), lng = numeric(), popup = character(), stringsAsFactors = FALSE)
+spots[1,] = c(39.329854, -76.620489, "John's Hopkins University")
+spots[2,] = c(39.327461, -76.615628, "Starbucks")
+spots[3,] = c(39.326796, -76.616160, "Carma's Cafe")
+spots[4,] = c(39.319446, -76.619433, "Carmington's")
+spots[5,] = c(39.330031, -76.629593, "Cafe Cito")
+spots[6,] = c(39.344519, -76.640281, "Common Ground")
+spots[7,] = c(39.330997, -76.630774, "Spro Coffee")
+spots[8,] = c(39.332722, -76.623279, "Cafe Azafran")
+spots[9,] = c(39.335906, -76.630670, "Starbucks")
+    
+spots %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(~lng, ~lat, popup = ~popup) %>%
+  setView(lng = -76.624576,lat = 39.332831, zoom = 14)
+```
+
